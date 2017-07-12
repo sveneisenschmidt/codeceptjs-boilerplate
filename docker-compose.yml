@@ -1,0 +1,16 @@
+version: "2"
+services:
+    node:
+        build:
+            context: ./
+            dockerfile: docker/Dockerfile-node
+        volumes:
+            - ./:/data:cached
+        working_dir: "/data"
+        links:
+            - selenium
+
+    selenium:
+        image: selenium/standalone-chrome-debug
+        ports:
+            - "59001:5900"

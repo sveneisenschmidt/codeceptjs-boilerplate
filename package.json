@@ -1,0 +1,15 @@
+{
+  "name": "codeceptjs-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/codeceptjs run --steps"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "codeceptjs-webdriverio": "^1.0.1",
+    "selenium-webdriver": "^3.4.0"
+  }
+}
