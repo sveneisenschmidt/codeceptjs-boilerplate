@@ -22,7 +22,7 @@ Starting codeceptjsboilerplate_selenium_1 ... done
 > codeceptjs-boilerplate@1.0.0 test /data
 > codeceptjs run --steps
 
-CodeceptJS v0.6.3
+CodeceptJS v1.1.5
 Using test root "/data"
 
 Example --
