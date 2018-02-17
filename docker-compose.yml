@@ -1,16 +1,16 @@
 version: "2"
 services:
     node:
-        build:
-            context: ./
-            dockerfile: docker/Dockerfile-node
+        build: .
+        container_name: codeceptjs
         volumes:
             - ./:/data:cached
         working_dir: "/data"
         links:
-            - selenium
+            - selenium:selenium.local
 
     selenium:
+        container_name: selenium
         image: selenium/standalone-chrome-debug
         ports:
             - "59001:5900"

@@ -3,15 +3,15 @@ COMPOSE := docker-compose -p $(PROJECT)
 
 all:
 	# Targets:
-	#	build					Build and installs dependencies
+	#	install					Build and installs dependencies
     #   test                    Runs the codeceptjs testsuite
 	#	clean-project			Remove all generated project files
 	#	start-selenium			Starts the selenium server
 	# 	stop-selenium			Stops the selenium server
 
-build:
+install:
 	@$(COMPOSE) build node
-	@$(COMPOSE) run --rm node bash -c 'npm install'
+	@$(COMPOSE) run --rm node bash -c 'yarn'
 
 shell:
 	@$(COMPOSE) run --rm --service-ports node bash

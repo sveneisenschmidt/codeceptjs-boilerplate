@@ -1,12 +1,13 @@
 {
-  "tests": "./features/*_test.js",
+  "tests": "features/*_test.js",
   "timeout": 10000,
   "output": "./output",
   "helpers": {
-    "SeleniumWebdriver": {
+    "WebDriverIO": {
       "url": "https://www.google.com",
       "browser": "chrome",
-      "seleniumAddress": "http://selenium:4444/wd/hub"
+      "host": "selenium.local",
+      "port": 4444
     }
   },
   "include": {

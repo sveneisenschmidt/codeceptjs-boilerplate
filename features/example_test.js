@@ -1,7 +1,7 @@
 
 Feature('Example');
 
-Scenario('test something', (I) => {
-  I.amOnPage('/?hl=en');
-  I.see('Sign in');
+Scenario('Test English Site', (I) => {
+    I.amOnPage('/?hl=en');
+    I.see('Sign in');
 });
