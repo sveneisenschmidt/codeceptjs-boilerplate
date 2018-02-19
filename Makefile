@@ -5,7 +5,7 @@ all:
 	# Targets:
 	#	install					Build and installs dependencies
     #   test                    Runs the codeceptjs testsuite
-	#	clean-project			Remove all generated project files
+	#	clean					Cleans node_modules, ouput and docker containers
 	#	start-selenium			Starts the selenium server
 	# 	stop-selenium			Stops the selenium server
 
@@ -26,6 +26,8 @@ start-selenium:
 stop-selenium:
 	@$(COMPOSE) stop selenium
 
-clean-project:
+clean:
 	@rm -rf node_modules
 	@rm -rf output/*
+	docker-compose stop
+	docker-compose rm

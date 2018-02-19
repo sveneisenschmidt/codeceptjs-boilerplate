@@ -16,8 +16,8 @@ Selenium VNC server is running at 0.0.0.0:59001
 ```
 
 ```
-$ make test
-Starting codeceptjsboilerplate_selenium_1 ... done
+$ make shell
+$ npm test
 
 > codeceptjs-boilerplate@1.0.0 test /data
 > codeceptjs run --steps
