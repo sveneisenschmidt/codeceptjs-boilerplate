@@ -67,16 +67,19 @@ Selenium VNC server is running at 0.0.0.0:59001
 ```js
   loadTests(pattern) {
     pattern = pattern || this.config.tests;
-    if (pattern.indexOf(',') > -1) {
-      pattern.split(',').forEach((subPattern) => {
-        glob.sync(fsPath.resolve(global.codecept_dir, subPattern)).forEach((file) => {
-          this.testFiles.push(fsPath.resolve(file));
-        });
-      });
-    } else {
+
+    let resolvePattern = (pattern) => {
       glob.sync(fsPath.resolve(global.codecept_dir, pattern)).forEach((file) => {
         this.testFiles.push(fsPath.resolve(file));
       });
+    };
+
+    if (pattern.indexOf(',') > -1) {
+      pattern.split(',').forEach((subPattern) => {
+        resolvePattern(subPattern);
+      });
+    } else {
+      resolvePattern(pattern);
     }
   }
 ```
