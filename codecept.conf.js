@@ -1,7 +1,27 @@
 const fs = require('fs');
 
-const parallelCount = 3;
+// Creates chunks from a list
+const createChunks = (list, size) => {
+    var sets = [], chunks, i = 0;
+    chunks = list.length / size;
+    while (i < chunks) {
+        sets[i] = list.splice(0, size);
+        i++;
+    }
+    return sets;
+};
 
+// Returns files from a directory
+const findFiles = (directory) => {
+	let files = [];
+	fs.readdirSync(directory).forEach(file => {
+		files.push(file);
+	});
+	return files;
+};
+
+// Configuration
+const parallelCount = 3;
 const WebDriverIO = {
 	'url': 'https://www.google.com',
 	'browser': 'chrome',
@@ -15,30 +35,14 @@ exports.config = {
 	'output': './output',
 	'multiple': (() => {
 
-		let createChunks = function(list, groupsize){
-			var sets = [], chunks, i = 0;
-			chunks = list.length / groupsize;
-			while(i < chunks){
-				sets[i] = list.splice(0,groupsize);
-				i++;
-			}
-			return sets;
-		};
-
-		let files = [];
-		fs.readdirSync('features/').forEach(file => {
-			files.push(file);
-		});
-
+		let files = findFiles('features/');
 		let chunkSize = Math.ceil(files.length/parallelCount);
 		let chunks = createChunks(files, chunkSize);
-
 		let groups = {};
+
 		chunks.forEach((chunk, index) => {
 			groups[index] = {
-				'tests': chunk.map((item) => {
-					return `features/${item}`
-				}).join(','),
+				'tests': chunk.map((item) => `features/${item}`).join(','),
 				'browsers': [WebDriverIO]
 			};
 		});
