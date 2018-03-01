@@ -1,5 +1,5 @@
 
-Feature('Example');
+Feature('Example English');
 
 Scenario('Test English Site', (I) => {
     I.amOnPage('/?hl=en');

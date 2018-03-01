@@ -17,7 +17,10 @@ shell:
 	@$(COMPOSE) run --rm --service-ports node bash
 
 test:
-	@$(COMPOSE) run --rm --service-ports node bash -c 'npm test'
+	@$(COMPOSE) run --rm --service-ports node bash -c 'npm run test'
+
+test-parallel:
+	@$(COMPOSE) run --rm --service-ports node bash -c 'npm run test-parallel'
 
 start-selenium:
 	@$(COMPOSE) up -d selenium

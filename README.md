@@ -52,3 +52,31 @@ Connect with a preferred VNC client to 0.0.0.0:59001, the password is `secret`.
 $ make start-selenium
 Selenium VNC server is running at 0.0.0.0:59001
 ```
+
+## Todo
+
+1) Patch `node_modules/codeceptjs/lib/command/run-multiple.js`:`147`
+```js
+  // override tests configuration
+  if (overriddenConfig.tests) {
+    overriddenConfig.tests = suiteConf.tests;
+  }
+```
+
+2) Replace function `loadTests`in `node_modules/codeceptjs/lib/codecept.js`:`86`
+```js
+  loadTests(pattern) {
+    pattern = pattern || this.config.tests;
+    if (pattern.indexOf(',') > -1) {
+      pattern.split(',').forEach((subPattern) => {
+        glob.sync(fsPath.resolve(global.codecept_dir, subPattern)).forEach((file) => {
+          this.testFiles.push(fsPath.resolve(file));
+        });
+      });
+    } else {
+      glob.sync(fsPath.resolve(global.codecept_dir, pattern)).forEach((file) => {
+        this.testFiles.push(fsPath.resolve(file));
+      });
+    }
+  }
+```
