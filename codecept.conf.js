@@ -1,10 +1,5 @@
 
-const createMultiple = require('./lib/create-multiple.js');
-
-
-
-// Configuration
-const parallelCount = 3;
+const withMultiple = require('./lib/with-multiple.js');
 
 let config = {
 	'tests': 'features/*_test.js',
@@ -26,10 +21,8 @@ let config = {
 	'name': 'data'
 }
 
-config.multiple = createMultiple(
-	parallelCount,
-	config.tests,  
-	{ 'browsers': [config.helpers.WebDriverIO] }
+exports.config = withMultiple(
+	2, // how many parallel runs
+	config, // the default configuration
+	'WebDriverIO' // what helper should be used
 );
-
-exports.config = config;
