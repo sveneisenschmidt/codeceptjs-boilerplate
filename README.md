@@ -68,18 +68,12 @@ Selenium VNC server is running at 0.0.0.0:59001
   loadTests(pattern) {
     pattern = pattern || this.config.tests;
 
-    let resolvePattern = (pattern) => {
-      glob.sync(fsPath.resolve(global.codecept_dir, pattern)).forEach((file) => {
-        this.testFiles.push(fsPath.resolve(file));
-      });
+    let options = {
+      cwd: global.codecept_dir
     };
 
-    if (pattern.indexOf(',') > -1) {
-      pattern.split(',').forEach((subPattern) => {
-        resolvePattern(subPattern);
-      });
-    } else {
-      resolvePattern(pattern);
-    }
+    glob.sync(pattern, options).forEach((file) => {
+      this.testFiles.push(fsPath.resolve(file));
+    });
   }
 ```
