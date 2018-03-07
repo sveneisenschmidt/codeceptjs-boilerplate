@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-make build
+make install
 ```
 
 ## Tests
