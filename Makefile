@@ -23,11 +23,11 @@ test-parallel:
 	@$(COMPOSE) run --rm --service-ports node bash -c 'npm run test-parallel'
 
 start-selenium:
-	@$(COMPOSE) up -d selenium
+	@$(COMPOSE) up -d selenium-hub
 	@echo "Selenium VNC server is running at 0.0.0.0:59001"
 
 stop-selenium:
-	@$(COMPOSE) stop selenium
+	@$(COMPOSE) stop selenium-hub selenium-node-firefox selenium-node-chrome
 
 clean:
 	@rm -rf node_modules

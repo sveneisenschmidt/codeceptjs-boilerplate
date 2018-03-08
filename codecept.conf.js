@@ -1,6 +1,3 @@
-
-const withMultiple = require('./lib/with-multiple.js');
-
 let config = {
 	'tests': 'features/*_test.js',
 	'timeout': 10000,
@@ -9,7 +6,7 @@ let config = {
 		'WebDriverIO': {
 			'url': 'https://www.google.com',
 			'browser': 'chrome',
-			'host': 'selenium.local',
+			'host': 'selenium-hub',
 			'port': 4444
 		}
 	},
@@ -21,8 +18,11 @@ let config = {
 	'name': 'data'
 }
 
-exports.config = withMultiple(
-	2, // how many parallel runs
-	config, // the default configuration
-	'WebDriverIO' // what helper should be used
-);
+let multiple = {
+	'my_parallel_suite': {
+		'chunks': 2,
+		'browsers': [config.helpers.WebDriverIO]
+	}
+};
+
+exports.config = {...config, multiple };

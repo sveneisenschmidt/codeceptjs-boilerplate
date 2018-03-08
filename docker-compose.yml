@@ -7,10 +7,29 @@ services:
             - ./:/data:cached
         working_dir: "/data"
         links:
-            - selenium:selenium.local
+            - selenium-hub
 
-    selenium:
-        container_name: selenium
-        image: selenium/standalone-chrome-debug
+    selenium-hub:
+        container_name: selenium-hub
+        image: selenium/hub
+        links:
+            - selenium-node-chrome-1
+            - selenium-node-chrome-2
+        ports:
+            - "4444:4444"
+
+    selenium-node-chrome-1:
+        container_name: selenium-node-chrome-1
+        image: selenium/node-chrome-debug
+        environment:
+            HUB_HOST: selenium-hub
         ports:
             - "59001:5900"
+
+    selenium-node-chrome-2:
+        container_name: selenium-node-chrome-2
+        image: selenium/node-chrome-debug
+        environment:
+            HUB_HOST: selenium-hub
+        ports:
+            - "59002:5900"
