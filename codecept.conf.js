@@ -1,28 +1,23 @@
+
+
+const { createMultiple } = require('./multiple.js');
+
 let config = {
-	'tests': 'features/*_test.js',
-	'timeout': 10000,
-	'output': './output',
-	'helpers': {
-		'WebDriverIO': {
-			'url': 'https://www.google.com',
-			'browser': 'chrome',
-			'host': 'selenium-hub',
-			'port': 4444
+	tests: 'features/*_test.js',
+	timeout: 10000,
+	output: './output',
+	helpers: {
+		WebDriverIO: {
+			url: 'https://www.google.com',
+			browser: 'chrome',
+			host: 'selenium-hub',
 		}
 	},
-	'include': {
-		'I': './support/steps_file.js'
+	include: {
+		I: './support/steps_file.js'
 	},
-	'bootstrap': false,
-	'mocha': {},
-	'name': 'data'
+	bootstrap: false,
+	mocha: {}
 }
 
-let multiple = {
-	'my_parallel_suite': {
-		'chunks': 2,
-		'browsers': [config.helpers.WebDriverIO]
-	}
-};
-
-exports.config = {...config, multiple };
+exports.config = { ...config, multiple: createMultiple(2, config) };

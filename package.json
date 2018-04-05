@@ -4,13 +4,13 @@
   "description": "CodeceptJS Boilerplate",
   "scripts": {
     "test": "yarn codeceptjs run --steps",
-    "test-parallel": "yarn codeceptjs run-multiple my_parallel_suite --steps"
+    "test-parallel": "yarn codeceptjs run-multiple --all"
   },
   "author": "Sven Eisenschnidt",
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "codeceptjs": "Codeception/CodeceptJS",
-    "codeceptjs-webdriverio": "^1.1.0"
+    "codeceptjs": "^1.1.7",
+    "webdriverio": "^4.12.0"
   }
 }
